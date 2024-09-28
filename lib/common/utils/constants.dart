@@ -1,5 +1,4 @@
 
-
 import 'dart:ui';
 
 class AppConst
@@ -20,6 +19,7 @@ class AppConst
   
   static const double kWidth = 375;
   static const double kHieght = 825;
+  static const double kRadius = 12;
   
 
 }

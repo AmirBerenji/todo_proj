@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WidthSpacer extends StatelessWidget {
   const WidthSpacer({
@@ -9,6 +10,6 @@ class WidthSpacer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: width);
+    return SizedBox(width: width.w);
   }
 }

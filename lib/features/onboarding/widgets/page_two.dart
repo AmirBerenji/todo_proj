@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo_proj/common/utils/constants.dart';
-import 'package:todo_proj/common/widgets/appstyle.dart';
 import 'package:todo_proj/common/widgets/custom_otl_btn.dart';
 import 'package:todo_proj/common/widgets/hight_spacer.dart';
-import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/features/auth/pages/login_page.dart';
 
 class PageTwo extends StatelessWidget {
