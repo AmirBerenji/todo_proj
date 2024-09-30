@@ -95,12 +95,12 @@ class TodoTile extends StatelessWidget {
                                       child: editWidget,
                                     ),
 
-                                    WidthSpacer(width: 20),
+                                    const WidthSpacer(width: 20),
 
                                     GestureDetector(
                                       onTap: delete,
                                       child:
-                                      Icon(MaterialCommunityIcons.delete_circle) 
+                                      const Icon(MaterialCommunityIcons.delete_circle) 
                                       ,
                                     )
                                   ],  
