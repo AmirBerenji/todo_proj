@@ -9,6 +9,7 @@ import 'package:todo_proj/common/widgets/hight_spacer.dart';
 import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/common/widgets/width_spacer.dart';
 import 'package:todo_proj/common/widgets/xpansion_tile.dart';
+import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
 class Homepage extends ConsumerStatefulWidget {
   const Homepage({super.key});
@@ -136,7 +137,7 @@ final TextEditingController search = TextEditingController();
                 height: AppConst.kHieght*0.3,
                 width: AppConst.kWidth,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(AppConst.kRadius)),
+                  borderRadius: const BorderRadius.all(Radius.circular(AppConst.kRadius)),
                   child: TabBarView(
                     controller: tabcontroller,  
                     children: [
@@ -144,9 +145,18 @@ final TextEditingController search = TextEditingController();
                         color: AppConst.kBkLight,
                         height: AppConst.kHieght*0.3,
 
+                        child: ListView(
+                          children: [
+                            TodoTile(
+                              start: "03:00",
+                              end: "05:00",
+                              switcher: Switch(
+                                value: true, 
+                                onChanged: (value){}),
+                            ),
+                          ],
+                        ),
                       ),
-
-
                       Container(
                         color: AppConst.kBkLight,
                         height: AppConst.kHieght*0.3,
@@ -168,8 +178,6 @@ final TextEditingController search = TextEditingController();
                 text: "${DateTime.now().add(const Duration(days: 2)).toString().substring(5,10)} Task", 
                 text2: "Day after tomorrow tasks", 
                 children: []),
-
-
            ], 
         ),
         ),
