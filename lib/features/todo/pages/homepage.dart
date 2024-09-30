@@ -9,6 +9,7 @@ import 'package:todo_proj/common/widgets/hight_spacer.dart';
 import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/common/widgets/width_spacer.dart';
 import 'package:todo_proj/common/widgets/xpansion_tile.dart';
+import 'package:todo_proj/features/todo/controllers/xpansion_provider.dart';
 import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
 class Homepage extends ConsumerStatefulWidget {
@@ -168,16 +169,52 @@ final TextEditingController search = TextEditingController();
 
               const HieghtSpacer(height: 20),
 
-              const XpansionTile(
+              XpansionTile(
                 text: "Tomorrow's Task", 
                 text2: "Tomorrow's tasks are shown here", 
-                children: []),
+                onExpansionChanged: (bool expanded){ 
+                  ref.read(xpansionStateProvider.notifier)
+                  .setStart(!expanded);
+                },
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: 12.w),
+                  child: ref.watch(xpansionStateProvider)
+                  ? const Icon(AntDesign.circledown,color: AppConst.kLight ,)
+                  : const Icon(AntDesign.closecircleo,color: AppConst.kBlueLight),
+                ),
+                children: [
+                  TodoTile(
+                              start: "03:00",
+                              end: "05:00",
+                              switcher: Switch(
+                                value: true, 
+                                onChanged: (value){}),
+                            ),
+                ]),
 
               const HieghtSpacer(height: 20),
                XpansionTile(
                 text: "${DateTime.now().add(const Duration(days: 2)).toString().substring(5,10)} Task", 
-                text2: "Day after tomorrow tasks", 
-                children: []),
+                text2: "Day after tomorrow tasks",
+                onExpansionChanged: (bool expanded){ 
+                  ref.read(xpansionState0Provider.notifier)
+                  .setStart(!expanded);
+                },
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: 12.w),
+                  child: ref.watch(xpansionState0Provider)
+                  ? const Icon(AntDesign.circledown,color: AppConst.kLight ,)
+                  : const Icon(AntDesign.closecircleo,color: AppConst.kBlueLight),
+                ), 
+                children: [
+                  TodoTile(
+                              start: "03:00",
+                              end: "05:00",
+                              switcher: Switch(
+                                value: true, 
+                                onChanged: (value){}),
+                            ),
+                ]),
            ], 
         ),
         ),
