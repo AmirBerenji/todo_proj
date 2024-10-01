@@ -1,8 +1,8 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_proj/common/utils/constants.dart';
-import 'package:todo_proj/features/auth/pages/test_page.dart';
 import 'package:todo_proj/features/todo/pages/homepage.dart';
 
 void main() {
@@ -12,6 +12,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static final defualtLightColorScheme = ColorScheme.fromSwatch(
+    primarySwatch: Colors.blue);
+
+  static final defualtDarkColorScheme = ColorScheme.fromSwatch(
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blue);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,16 +27,24 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375,825),
       minTextAdapt: true,
       builder: (context,child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            scaffoldBackgroundColor: AppConst.kBkDark,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          darkTheme: ThemeData.dark(),
-          home: const Homepage(),
+        return DynamicColorBuilder(
+          builder: (lightColorScheme,darkColorScheme) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                scaffoldBackgroundColor: AppConst.kBkDark,
+                colorScheme: lightColorScheme ?? defualtLightColorScheme,
+                useMaterial3: true,
+              ),
+              darkTheme: ThemeData(
+                colorScheme: darkColorScheme ?? defualtDarkColorScheme,
+                scaffoldBackgroundColor: AppConst.kBkDark,
+                useMaterial3: true,
+              ),
+              home: const Homepage(),
+            );
+          }
         );
       }
     );
