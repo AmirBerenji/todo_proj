@@ -71,7 +71,7 @@ class DbHelper {
   }
 
   static Future<int> updateItem(int id,String title, String desc, int isCompleted,
-                                String date,String startTime,String endTime, ) async {
+                                String date,String startTime,String endTime ) async {
     final db = await DbHelper.db();
 
     final data = {
