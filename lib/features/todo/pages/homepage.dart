@@ -10,6 +10,7 @@ import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/common/widgets/width_spacer.dart';
 import 'package:todo_proj/common/widgets/xpansion_tile.dart';
 import 'package:todo_proj/features/todo/controllers/xpansion_provider.dart';
+import 'package:todo_proj/features/todo/pages/add.dart';
 import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
 class Homepage extends ConsumerStatefulWidget {
@@ -51,7 +52,9 @@ final TextEditingController search = TextEditingController();
                         borderRadius: BorderRadius.all(Radius.circular(9)),
                       ),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTask()));
+                        },
                         child: const Icon(Icons.add,color: AppConst.kBkDark,),
                       ),
                     )
