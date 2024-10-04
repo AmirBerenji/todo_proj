@@ -76,3 +76,4 @@ class TodoState extends _$TodoState {
   }
 
 }
+
