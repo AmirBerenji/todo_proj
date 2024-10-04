@@ -53,7 +53,7 @@ final TextEditingController search = TextEditingController();
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTask()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddTask()));
                         },
                         child: const Icon(Icons.add,color: AppConst.kBkDark,),
                       ),
