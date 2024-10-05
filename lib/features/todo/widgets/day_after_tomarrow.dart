@@ -6,6 +6,7 @@ import 'package:todo_proj/common/utils/constants.dart';
 import 'package:todo_proj/common/widgets/xpansion_tile.dart';
 import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
 import 'package:todo_proj/features/todo/controllers/xpansion_provider.dart';
+import 'package:todo_proj/features/todo/pages/update_task.dart';
 import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
 class DayAfterTomarrow extends ConsumerWidget {
@@ -16,7 +17,7 @@ class DayAfterTomarrow extends ConsumerWidget {
     final todos = ref.watch(todoStateProvider);
     var color = ref.read(todoStateProvider.notifier).getRandomColor();
     String dayAfter = ref.read(todoStateProvider.notifier).getAfterTomorrow();
-    var dayAfter_List = todos.where((e)=>e.date!.contains(dayAfter)).toList();
+    var dayafterList = todos.where((e)=>e.date!.contains(dayAfter)).toList();
 
     return XpansionTile(
                 text: DateTime.now().add(const Duration(days: 2)).toString().substring(5,10), 
@@ -32,7 +33,7 @@ class DayAfterTomarrow extends ConsumerWidget {
                   : const Icon(AntDesign.closecircleo,color: AppConst.kBlueLight),
                 ),
                 children: [
-                  for(final todo in dayAfter_List)
+                  for(final todo in dayafterList)
                   TodoTile(
                     title: todo.title,
                     description: todo.desc,
@@ -42,7 +43,14 @@ class DayAfterTomarrow extends ConsumerWidget {
                     delete: (){
                           ref.read(todoStateProvider.notifier).deleteTodo(todo.id??0);
                         },
-                        editWidget: GestureDetector(onTap: () {},
+                        editWidget: GestureDetector(onTap: () {
+
+                          titles = todo.title.toString();
+                          descs = todo.desc.toString();
+                          Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => UpdateTask(todo.id??0)));
+                          
+                        },
                         child: const Icon(MaterialCommunityIcons.circle_edit_outline),
                         ),
                     switcher: const SizedBox.shrink() 
