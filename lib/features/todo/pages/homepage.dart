@@ -9,8 +9,10 @@ import 'package:todo_proj/common/widgets/hight_spacer.dart';
 import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/common/widgets/width_spacer.dart';
 import 'package:todo_proj/common/widgets/xpansion_tile.dart';
+import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
 import 'package:todo_proj/features/todo/controllers/xpansion_provider.dart';
 import 'package:todo_proj/features/todo/pages/add.dart';
+import 'package:todo_proj/features/todo/widgets/today_task.dart';
 import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
 class Homepage extends ConsumerStatefulWidget {
@@ -28,6 +30,7 @@ final TextEditingController search = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(todoStateProvider.notifier).refresh();
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -149,17 +152,7 @@ final TextEditingController search = TextEditingController();
                         color: AppConst.kBkLight,
                         height: AppConst.kHieght*0.3,
 
-                        child: ListView(
-                          children: [
-                            TodoTile(
-                              start: "03:00",
-                              end: "05:00",
-                              switcher: Switch(
-                                value: true, 
-                                onChanged: (value){}),
-                            ),
-                          ],
-                        ),
+                        child: const TodayTask(),
                       ),
                       Container(
                         color: AppConst.kBkLight,
@@ -225,5 +218,6 @@ final TextEditingController search = TextEditingController();
     );
   }
 }
+
 
 
