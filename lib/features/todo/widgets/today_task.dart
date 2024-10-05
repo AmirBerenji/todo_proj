@@ -28,7 +28,7 @@ class TodayTask extends ConsumerWidget {
             ref.read(todoStateProvider.notifier).deleteTodo(data.id??0);
           },
           editWidget: GestureDetector(onTap: () {
-              
+
           },
           child: const Icon(MaterialCommunityIcons.circle_edit_outline),
           ),
@@ -40,7 +40,15 @@ class TodayTask extends ConsumerWidget {
           switcher: Switch(
             value: isCompleted, 
             onChanged: (value){
-                
+                ref.read(todoStateProvider.notifier).markAsComplete(
+                  data.id??0, 
+                  data.title.toString(), 
+                  data.desc.toString(), 
+                  1, 
+                  data.date.toString(), 
+                  data.startTime.toString(), 
+                  data.endTime.toString());
+                  
             }),
         );
       }

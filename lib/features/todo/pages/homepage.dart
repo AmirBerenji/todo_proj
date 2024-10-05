@@ -10,6 +10,7 @@ import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/common/widgets/width_spacer.dart';
 import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
 import 'package:todo_proj/features/todo/pages/add.dart';
+import 'package:todo_proj/features/todo/widgets/completed_task.dart';
 import 'package:todo_proj/features/todo/widgets/day_after_tomarrow.dart';
 import 'package:todo_proj/features/todo/widgets/today_task.dart';
 import 'package:todo_proj/features/todo/widgets/tomorrow_list.dart';
@@ -156,7 +157,7 @@ final TextEditingController search = TextEditingController();
                       Container(
                         color: AppConst.kBkLight,
                         height: AppConst.kHieght*0.3,
-
+                        child: const CompletedTask(),
                       ),
                     ]),
                 ),
