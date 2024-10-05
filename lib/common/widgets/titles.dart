@@ -5,6 +5,7 @@ import 'package:todo_proj/common/widgets/appstyle.dart';
 import 'package:todo_proj/common/widgets/hight_spacer.dart';
 import 'package:todo_proj/common/widgets/resuable_text.dart';
 import 'package:todo_proj/common/widgets/width_spacer.dart';
+import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
 
 class BottomTitles extends StatelessWidget {
   const BottomTitles({super.key, required this.text, required this.text2,  this.clr});
@@ -23,13 +24,13 @@ final Color? clr;
         children: [
           Consumer(
             builder: (context,ref,child){
+              var color = ref.read(todoStateProvider.notifier).getRandomColor();
               return Container(
                 height: 80,
                 width: 5,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(AppConst.kRadius)),
-                  ///TODO: Add dynamic color
-                  color: AppConst.kGreen
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(AppConst.kRadius)),
+                  color: color,
                 ),
               );
             }
