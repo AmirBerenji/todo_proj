@@ -11,7 +11,7 @@ class DbHelper {
       "id INTEGER PRIMARY KEY AUTOINCREMENT,"
       "title STRING, desc TEXT,date STRING,"
       "startTime STRING, endTime STRING, "
-      "reminder INTEGER, repeat STRING,"
+      "remind INTEGER, repeat STRING,"
       "isCompleted INTEGER)"
     );
 

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_proj/common/models/task_model.dart';
 import 'package:todo_proj/common/utils/constants.dart';
 import 'package:todo_proj/common/widgets/appstyle.dart';
 import 'package:todo_proj/common/widgets/custom_otl_btn.dart';
@@ -9,6 +10,7 @@ import 'package:todo_proj/common/widgets/custome_text.dart';
 import 'package:todo_proj/common/widgets/hight_spacer.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as picker;
 import 'package:todo_proj/features/todo/controllers/dates/dates_provider.dart';
+import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
 
 class AddTask extends ConsumerStatefulWidget {
   const AddTask({super.key});
@@ -124,7 +126,32 @@ class _AddTask extends ConsumerState<AddTask> {
 
                 CustomOtlnBtn(
                   onTap: (){
+                    if (title.text.isNotEmpty &&
+                      desc.text.isNotEmpty &&
+                      schedualDate.isNotEmpty &&
+                      start.isNotEmpty &&
+                      end.isNotEmpty) {
+                      Task task = Task(
+                        title: title.text,
+                        desc: desc.text,
+                        isCompleted: 0,
+                        date: schedualDate,
+                        startTime: start.substring(10,16),
+                        endTime: end.substring(10,16),
+                        remind: 0,
+                        repeat: "yes"
+                      );
+                      
+                      ref.read(todoStateProvider.notifier).addItem(task);
+                      
+                      ref.read(finishTimeStateProvider.notifier).setEnd("");
+                      ref.read(startTimeStateProvider.notifier).setStart("");
+                      ref.read(dateStateProvider.notifier).setDate("");
 
+                      Navigator.pop(context);
+                    } else {
+                      print("faild to add task");
+                    }
                   },
                   width: AppConst.kWidth * 0.4, 
                   height: 52.h,
