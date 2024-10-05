@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_proj/common/models/task_model.dart';
+import 'package:todo_proj/common/utils/constants.dart';
 import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
+import 'package:todo_proj/features/todo/pages/update_task.dart';
 import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
 class TodayTask extends ConsumerWidget {
@@ -28,7 +30,10 @@ class TodayTask extends ConsumerWidget {
             ref.read(todoStateProvider.notifier).deleteTodo(data.id??0);
           },
           editWidget: GestureDetector(onTap: () {
-
+            titles = data.title.toString();
+            descs = data.desc.toString();
+            Navigator.push(context,
+             MaterialPageRoute(builder: (context) => UpdateTask(data.id??0)));
           },
           child: const Icon(MaterialCommunityIcons.circle_edit_outline),
           ),
@@ -48,7 +53,7 @@ class TodayTask extends ConsumerWidget {
                   data.date.toString(), 
                   data.startTime.toString(), 
                   data.endTime.toString());
-                  
+
             }),
         );
       }

@@ -6,18 +6,17 @@ import 'package:todo_proj/common/utils/constants.dart';
 import 'package:todo_proj/common/widgets/xpansion_tile.dart';
 import 'package:todo_proj/features/todo/controllers/todo/todo_provider.dart';
 import 'package:todo_proj/features/todo/controllers/xpansion_provider.dart';
-import 'package:todo_proj/features/todo/pages/update_task.dart';
 import 'package:todo_proj/features/todo/widgets/todo_tile.dart';
 
-class TomorrowList extends ConsumerWidget {
-  const TomorrowList({super.key});
+class DayAfterTomarow extends ConsumerWidget {
+  const DayAfterTomarow({super.key});
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final todos = ref.watch(todoStateProvider);
     var color = ref.read(todoStateProvider.notifier).getRandomColor();
-    String tomorrow = ref.read(todoStateProvider.notifier).getTomorrow();
-    var tomorrowsTasks = todos.where((e)=>e.date!.contains(tomorrow)).toList();
+    String dayAfter = ref.read(todoStateProvider.notifier).getAfterTomorrow();
+    var dayafterList = todos.where((e)=>e.date!.contains(dayAfter)).toList();
 
     return XpansionTile(
                 text: "Tomorrow's Task", 
@@ -33,7 +32,7 @@ class TomorrowList extends ConsumerWidget {
                   : const Icon(AntDesign.closecircleo,color: AppConst.kBlueLight),
                 ),
                 children: [
-                  for(final todo in tomorrowsTasks)
+                  for(final todo in dayafterList)
                   TodoTile(
                     title: todo.title,
                     description: todo.desc,
@@ -43,12 +42,7 @@ class TomorrowList extends ConsumerWidget {
                     delete: (){
                           ref.read(todoStateProvider.notifier).deleteTodo(todo.id??0);
                         },
-                        editWidget: GestureDetector(onTap: () {
-                          titles = todo.title.toString();
-                          descs = todo.desc.toString();
-                          Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UpdateTask(todo.id??0)));
-                        },
+                        editWidget: GestureDetector(onTap: () {},
                         child: const Icon(MaterialCommunityIcons.circle_edit_outline),
                         ),
                     switcher: const SizedBox.shrink() 
