@@ -4,8 +4,7 @@ import 'dart:ui';
 class AppConst
 {
   AppConst._();
-
-
+  
   static const Color kBkDark = Color(0xFF2a2b2e);
   static const Color kLight = Color(0xFFFFFFFF);
   static const Color kRed = Color(0xFFd80000);
